@@ -1,8 +1,8 @@
 # Imports os from the python library.
 import os
 
-# Imports the Flask class.
-from flask import Flask     
+# Imports the Flask class, and render_template which displays the file assigned to it.
+from flask import Flask, render_template     
 
 
 # Creates an instance of the Flask class and stores it in the "app" variable.
@@ -15,7 +15,7 @@ app = Flask(__name__)
 # The route decorator tells the app which URL should trigger the index() fn.
 @app.route("/")     
 def index():
-    return "<h1>Hello</h1> <h2>World</h2>"
+    return render_template("index.html")
 
 
 # "__main__" is the name of the default module in Python
