@@ -17,6 +17,10 @@ app = Flask(__name__)
 def index():
     return render_template("index.html")
 
+@app.route("/about")     
+def about():
+    return render_template("about.html")
+
 
 # "__main__" is the name of the default module in Python
 if __name__ == "__main__":
