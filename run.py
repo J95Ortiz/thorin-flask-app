@@ -30,6 +30,11 @@ def about():
 def contact():
     return render_template("contact.html")
 
+# This routing will open the careers.html file
+@app.route("/careers")     
+def careers():
+    return render_template("careers.html")
+
 
 # "__main__" is the name of the default module in Python
 if __name__ == "__main__":
@@ -37,3 +42,7 @@ if __name__ == "__main__":
         host = os.environ.get("IP", "0.0.0.0"),
         port = int(os.environ.get("PORT", "5000")),
         debug = True) # Make sure debug = True is removed before any submission.
+
+# {{ }} is for inserting content (in this case, straight into the href)
+# {% %} is for elements which affect the flow of the page
+# The lines below create a template which can be inserted into other similar pages to avoid repetitiveness
