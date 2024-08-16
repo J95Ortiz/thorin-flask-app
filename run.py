@@ -12,14 +12,23 @@ from flask import Flask, render_template
 app = Flask(__name__)   
 
 
-# The route decorator tells the app which URL should trigger the index() fn.
+# The route decorator tells the app which URL should trigger the fn.
+# This routing will open the index.html file
 @app.route("/")     
 def index():
     return render_template("index.html")
 
+
+# This routing will open the index.html file
 @app.route("/about")     
 def about():
     return render_template("about.html")
+
+
+# This routing will open the contact.html file
+@app.route("/contact")     
+def contact():
+    return render_template("contact.html")
 
 
 # "__main__" is the name of the default module in Python

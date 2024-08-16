@@ -8,11 +8,17 @@
   <body>
     <nav>
       <ul>
+        <!-- {{ }} is for inserting content (in this case, straight into the href) -->
         <li><a href="{{ url_for('index') }}">Home</a></li>
         <li><a href="{{ url_for('about') }}">About</a></li>
         <li><a href="{{ url_for('contact') }}">Contact</a></li>
       </ul>
     </nav>
-    <h1>Home Page</h1>
+
+    <!-- {% %} is for elements which affect the flow of the page -->
+    <!-- The lines below create a template which can be inserted into other similar pages to avoid repetitiveness -->
+    {% block content %}
+    {% endblock %}
+
   </body>
 </html>

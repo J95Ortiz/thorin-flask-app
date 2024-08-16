@@ -13,6 +13,6 @@
     "**/CVS": true
   },
   "files.autoSave": "off",
-  "workbench.colorTheme": "Night Owl",
+  "workbench.colorTheme": "Andromeda Colorizer",
   "terminal.integrated.gpuAcceleration": "canvas"
 }
