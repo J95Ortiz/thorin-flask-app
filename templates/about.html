@@ -1,4 +1,4 @@
-{% extends "base.html" %} {% block content %} {{ company[1]["name"] }}
+{% extends "base.html" %} {% block content %}
 
 <h2>{{ page_title }}</h2>
 <p>
@@ -13,29 +13,46 @@
   considered thirteen to be an unlucky number, and as Gandalf had planned to
   leave on other business, welcomed a fourteenth to fill into their party.
 </p>
+
+{% for member in company %}
+
 <div class="row featurette">
+  {% if loop.index % 2 != 0 %}
+
   <div class="col-md-7">
-    <h3>Thorin Oakenshield</h3>
-    <p>
-      Thorin II was born in TA 2746 to the Dwarf prince Thráin II in the city of
-      the Lonely Mountain. Early in his youth, Thorin and the other Dwarves of
-      the Lonely Mountain were forced to flee by the dragon Smaug, in TA 2770.
-      While in exile, he quickly grew into a capable warrior. This was
-      demonstrated at the Battle of Azanulbizar, near Moria, in TA 2799. He
-      fought with one of the Dwarven armies beneath Moria's East-gate, and at
-      some point in the battle, his shield broke, and, using an oaken tree
-      branch found on the ground as a shield, he gained the epithet
-      "Oakenshield," which remained with him even in death.
-    </p>
+    <h3>{{ loop.index }}. {{ member.name }}</h3>
+    <p>{{ member.description }}</p>
   </div>
   <div class="col-md-5">
     <img
-      src="https://www.bricksandfigures.co.uk/cdn/shop/files/57_daff9f4b-7954-4e1e-be58-52b338f7d879.jpg"
-      alt="Thorin" />
+      src="{{ member.image_source }}"
+      alt="Thorin"
+      class="featurette-image image-responsive" />
   </div>
+
+  {% else %}
+
+  <div class="col-md-5">
+    <img
+      src="{{ member.image_source }}"
+      alt=""
+      class="featurette-image image-responsive" />
+  </div>
+  <div class="col-md-7">
+    <h3>{{ loop.index }}. {{ member.name }}</h3>
+    <p>{{ member.description }}</p>
+  </div>
+
+  {% endif %}
 </div>
 
-<div class="row featurette">
+{% if loop.index !=loop.length %}
+
+<hr class="featurette-divider" />
+
+{% endif %}
+
+<!-- <div class="row featurette">
   <div class="col-md-5">
     <img
       src="https://media.istockphoto.com/id/459017445/photo/kili-and-fili.jpg?s=2048x2048&w=is&k=20&c=sCKKgb5W1BM6nJCLlxAJ6523-FkVSxCJN08pNd_cHXQ="
@@ -235,5 +252,6 @@
       src="https://m.media-amazon.com/images/I/61pEDR3ahhL._AC_SL1500_.jpg"
       alt="" />
   </div>
-</div>
-{% endblock %}
+</div> -->
+
+{% endfor %} {% endblock %}
