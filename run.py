@@ -5,7 +5,10 @@ import os
 import json
 
 # Imports the Flask class, and render_template which displays the file assigned to it.
-from flask import Flask, render_template     
+from flask import Flask, render_template, request, flash
+
+if os.path.exists("env.py"):
+    import env
 
 
 # Creates an instance of the Flask class and stores it in the "app" variable.
@@ -13,6 +16,7 @@ from flask import Flask, render_template
 # Since we're just using a single module, we can use __name__ which is a built-in Python variable.
 # Flask needs this so it knows where to look for templates and static files.
 app = Flask(__name__)   
+app.secret_key = os.environ.get("SECRET_KEY")
 
 
 # The route decorator tells the app which URL should trigger the fn.
@@ -31,9 +35,24 @@ def about():
     return render_template("about.html", page_title="About", company = data)
 
 
+# This will create a separate page for each member by taking the url attribute in company.json
+@app.route("/about/<member_name>")
+def about_member(member_name):
+    member = {}
+    with open("data/company.json", "r") as json_data:
+        data = json.load(json_data)
+        for obj in data:
+            if obj["url"] == member_name:
+                member = obj
+    return render_template("member.html", member=member)
+
+
 # This routing will open the contact.html file
-@app.route("/contact")     
+@app.route("/contact", methods=["GET", "POST"])     
 def contact():
+    if request.method == "POST":
+        flash("Thanks {}, we have received your message!".format(
+            request.form.get("name")))
     return render_template("contact.html", page_title="Contact")
 
 # This routing will open the careers.html file
